@@ -1,0 +1,28 @@
+### Add John
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "loginName": "John"
+
+}
+
+### Add Willy
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "loginName": "Willy"
+
+}
+
+### Get All Users
+
+GET localhost:8080/api/users
+
+
+### Get user 1
+
+GET http://localhost:8080/api/users/1

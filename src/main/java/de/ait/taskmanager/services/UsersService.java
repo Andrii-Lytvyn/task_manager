@@ -1,13 +1,17 @@
 package de.ait.taskmanager.services;
 
-import de.ait.taskmanager.dto.NewUserDto;
-import de.ait.taskmanager.dto.UserDto;
+import de.ait.taskmanager.dto.*;
 
 import java.util.List;
 
 public interface UsersService {
-    List<UserDto> getAllUsers();
+    UsersDto getAllUsers();
 
-    UserDto addUser(NewUserDto userDto);
+    UserDto addUser(NewUserDto newUser);
+
+    UserDto getUser(Long userId);
+
+    TasksDto getTasksOfUser(Long userId);
+
 }
 

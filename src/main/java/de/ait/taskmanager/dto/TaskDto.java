@@ -1,5 +1,6 @@
 package de.ait.taskmanager.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,16 +16,33 @@ import java.util.stream.Collectors;
 @Builder
 public class TaskDto {
 
+    @Schema(description = "Task ID", example = "1")
     private Long id;
+    @Schema(description = "Tasks title", example = "Some task's title...")
     private String title;
-    private String description;
 
-    public static TaskDto from (Task task){
-        return TaskDto.builder()
+    @Schema(description = "Task date in format:  YYYY-MM-DD", example = "2022-02-02")
+    private String startDate;
+
+    @Schema(description = "User name, that have a task/")
+    private UserInTaskDto about;
+
+
+    public static TaskDto from(Task task) {
+        TaskDto result = TaskDto.builder()
                 .id(task.getId())
                 .title(task.getTitle())
-                .description(task.getDescription())
                 .build();
+
+        if (task.getExecutor() != null) {
+            result.setAbout(UserInTaskDto.from(task.getExecutor()));
+        }
+
+        if (task.getStartDate() != null) {
+            result.setStartDate(task.getStartDate().toString());
+        }
+
+        return result;
     }
 
     public static List<TaskDto> from (List<Task> events){

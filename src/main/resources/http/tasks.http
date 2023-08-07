@@ -1,0 +1,56 @@
+
+### Add task 1
+
+POST localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title" : "some first text",
+  "aboutUserId": 1,
+  "publishDate": "2022-01-02"
+}
+
+### Add task # 2
+
+POST localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title" : "Second task 4 first user",
+  "aboutUserId": 1,
+  "publishDate": "2022-01-22"
+}
+
+### Add task # 3
+
+POST localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title" : "Third task",
+  "aboutUserId": 1,
+  "publishDate": "2021-02-02"
+}
+
+### Task 4 user 2
+
+POST localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title" : "Task User2 ",
+  "aboutUserId": 2,
+  "publishDate": "2022-02-02"
+}
+
+### All User One's tasks
+
+GET localhost:8080/api/users/1/tasks
+
+### Second user tasks
+
+GET localhost:8080/api/users/2/tasks
+
+### All tasks by date
+
+GET localhost:8080/api/tasks?year=2021&month=1

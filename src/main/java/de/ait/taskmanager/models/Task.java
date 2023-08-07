@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -25,7 +22,9 @@ public class Task {
     private String description;
     private String title;
     private LocalDate startDate;
-    private LocalDate finishdate;
+    private LocalDate finishDate;
 
-  //  private User executor;
+    @ManyToOne
+    @JoinColumn(name = "about_id")
+    private User executor;
 }

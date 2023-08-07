@@ -22,6 +22,8 @@ public class User {
 
     private String loginName;
 
+    @OneToMany(mappedBy = "executor")
+    private List<Task> tasks;
 
 
 
