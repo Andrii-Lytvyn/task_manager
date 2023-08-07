@@ -4,7 +4,7 @@ POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-  "loginName": "John"
+  "loginName": "John the First"
 
 }
 
@@ -14,7 +14,7 @@ POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-  "loginName": "Willy"
+  "loginName": "Willy the Second"
 
 }
 
@@ -26,3 +26,7 @@ GET localhost:8080/api/users
 ### Get user 1
 
 GET http://localhost:8080/api/users/1
+
+### Get user 2
+
+GET http://localhost:8080/api/users/2

@@ -1,46 +1,67 @@
 
-### Add task 1
+### Add task 1 User 1
 
 POST localhost:8080/api/tasks
 Content-Type: application/json
 
 {
-  "title" : "some first text",
+  "title" : "Wash a car",
   "aboutUserId": 1,
-  "publishDate": "2022-01-02"
+  "startDate": "2023-10-10",
+  "finishDate": "2023-10-12",
+  "description" : "Wash car in a car wash"
 }
 
-### Add task # 2
+### Add task # 2 User 1
 
 POST localhost:8080/api/tasks
 Content-Type: application/json
 
 {
-  "title" : "Second task 4 first user",
+  "title" : "Make homework",
   "aboutUserId": 1,
-  "publishDate": "2022-01-22"
+  "startDate": "2023-11-11",
+  "finishDate": "2023-11-12",
+  "description" : "Learn new words"
 }
 
-### Add task # 3
+### Add task # 3 User 1
 
 POST localhost:8080/api/tasks
 Content-Type: application/json
 
 {
-  "title" : "Third task",
+  "title" : "Check android updates",
   "aboutUserId": 1,
-  "publishDate": "2021-02-02"
+  "startDate": "2024-01-01",
+  "finishDate": "2024-01-02",
+  "description" : "Learn new words"
 }
 
-### Task 4 user 2
+### Task 1 user 2
 
 POST localhost:8080/api/tasks
 Content-Type: application/json
 
 {
-  "title" : "Task User2 ",
+  "title" : "make morning coffee",
   "aboutUserId": 2,
-  "publishDate": "2022-02-02"
+  "startDate": "2024-02-01",
+  "finishDate": "2024-02-02",
+  "description" : "Make 3 americano"
+}
+
+### Task 2 user 2
+
+POST localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title" : "make breakfast",
+  "aboutUserId": 2,
+  "startDate": "2024-03-01",
+  "finishDate": "2024-03-02",
+  "description" : "Make pancakes"
 }
 
 ### All User One's tasks
@@ -51,6 +72,68 @@ GET localhost:8080/api/users/1/tasks
 
 GET localhost:8080/api/users/2/tasks
 
-### All tasks by date
+### All tasks by date - empty
 
 GET localhost:8080/api/tasks?year=2021&month=1
+
+### Check empty title
+POST localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title" : "12",
+  "aboutUserId": 1,
+  "startDate": "2023-10-10",
+  "finishDate": "2023-10-12",
+  "description" : "Empty title"
+}
+
+
+
+### Check empty description
+POST localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title" : "some title, but empty description",
+  "aboutUserId": 1,
+  "startDate": "2023-10-10",
+  "finishDate": "2023-10-12",
+  "description" : ""
+}
+
+### Check start before current date
+POST localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title" : "Current date",
+  "aboutUserId": 1,
+  "startDate": "2022-01-02",
+  "finishDate": "2024-01-03",
+  "description" : "Check start before current date"
+}
+
+### Check finish before current date
+POST localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title" : "Current date",
+  "aboutUserId": 1,
+  "startDate": "2024-01-03",
+  "finishDate": "2022-01-03",
+  "description" : "test date"
+}
+
+### Check good before current date
+POST localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "title" : "Current date",
+  "aboutUserId": 1,
+  "startDate": "2023-08-10",
+  "finishDate": "2023-08-12",
+  "description" : "test date"
+}

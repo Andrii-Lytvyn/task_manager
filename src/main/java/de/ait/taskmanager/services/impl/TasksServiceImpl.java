@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import de.ait.taskmanager.repositories.TasksRepository;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static de.ait.taskmanager.dto.TaskDto.from;
 
@@ -30,7 +29,9 @@ public class TasksServiceImpl implements TasksService {
         Task task = Task.builder()
                 .title(newTask.getTitle())
                 .executor(user)
-                .startDate(LocalDate.parse(newTask.getPublishDate()))
+                .startDate(newTask.getStartDate())
+                .finishDate(newTask.getFinishDate())
+                .description(newTask.getDescription())
                 .build();
         tasksRepository.save(task);
         return from(task);
