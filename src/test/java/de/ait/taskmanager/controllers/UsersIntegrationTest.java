@@ -161,24 +161,24 @@ class UsersIntegrationTest {
     }
 
     @Nested
-    @DisplayName("GET /api/users/{userId}/articles")
+    @DisplayName("GET /api/users/{userId}/tasks")
     class GetArticlesOfUserTest {
 
         @Test
         @Sql(scripts = "/sql/data_for_users.sql")
         @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
-        void get_articles_for_exist_user() throws Exception {
-            mockMvc.perform(get("/api/users/1/articles"))
+        void get_tasks_for_exist_user() throws Exception {
+            mockMvc.perform(get("/api/users/1/tasks"))
                     .andExpect(status().isOk())
                     .andDo(print())
                     .andExpect(jsonPath("$.count", is(2)))
-                    .andExpect(jsonPath("$.articles[0].id", is(1)))
-                    .andExpect(jsonPath("$.articles[1].id", is(2)));
+                    .andExpect(jsonPath("$.tasks[0].id", is(1)))
+                    .andExpect(jsonPath("$.tasks[1].id", is(2)));
         }
 
         @Test
         void get_articles_for_not_exist_user() throws Exception {
-            mockMvc.perform(get("/api/users/1/articles"))
+            mockMvc.perform(get("/api/users/1/tasks"))
                     .andExpect(status().isNotFound());
         }
     }

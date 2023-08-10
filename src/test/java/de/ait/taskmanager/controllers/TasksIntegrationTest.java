@@ -31,6 +31,7 @@ class TasksIntegrationTest {
                     .aboutUserId(1L)
                     .startDate(LocalDate.parse("2023-12-02"))
             .finishDate(LocalDate.parse("2023-12-12"))
+            .description("Test description Task")
             .build();
 
     @Autowired
@@ -41,10 +42,10 @@ class TasksIntegrationTest {
 
     @Nested
     @DisplayName("POST /api/tasks is works: ")
-    class AddArticleTest {
+    class AddTaskTest {
 
         @Test
-        @Sql(scripts = "/sql/tasks.sql")
+        @Sql(scripts = "/sql/data_for_tasks.sql")
         @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
         public void add_task_for_exist_user() throws Exception {
 
@@ -55,7 +56,8 @@ class TasksIntegrationTest {
                             .content(body))
                     .andExpect(status().isCreated())
                     .andExpect(jsonPath("$.id", is(1)))
-                    .andExpect(jsonPath("$.text", is("Test Task")))
+                    .andExpect(jsonPath("$.title", is("Test Task")))
+                    .andExpect(jsonPath("$.description", is("Test description Task")))
                     .andExpect(jsonPath("$.startDate", is("2023-12-02")))
                     .andExpect(jsonPath("$.finishDate", is("2023-12-12")))
                     .andExpect(jsonPath("$.about.id", is(1)))
