@@ -45,7 +45,7 @@ Content-Type: application/json
 
 {
   "title" : "make morning coffee",
-  "aboutUserId": 2,
+  "aboutUserId": 3,
   "startDate": "2024-02-01",
   "finishDate": "2024-02-02",
   "description" : "Make 3 americano"
@@ -58,7 +58,7 @@ Content-Type: application/json
 
 {
   "title" : "make breakfast",
-  "aboutUserId": 2,
+  "aboutUserId": 3,
   "startDate": "2024-03-01",
   "finishDate": "2024-03-02",
   "description" : "Make pancakes"
@@ -70,7 +70,7 @@ GET localhost:8080/api/users/1/tasks
 
 ### Second user tasks
 
-GET localhost:8080/api/users/2/tasks
+GET localhost:8080/api/users/3/tasks
 
 ### All tasks by date - empty
 

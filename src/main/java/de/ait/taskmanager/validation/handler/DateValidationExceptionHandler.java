@@ -5,12 +5,14 @@ import de.ait.taskmanager.validation.dto.BeforeCurrentDateErrorDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ValidationExceptionHandler {
+@ControllerAdvice
+public class DateValidationExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<BeforeCurrentDataErrorsDto> handleException(MethodArgumentNotValidException e) {
         // собираем список всех ошибок в JSON-виде

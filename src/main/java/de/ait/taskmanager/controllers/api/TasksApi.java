@@ -1,5 +1,6 @@
 package de.ait.taskmanager.controllers.api;
 
+import de.ait.taskmanager.dto.ErrorDto;
 import de.ait.taskmanager.dto.TaskDto;
 import de.ait.taskmanager.dto.NewTaskDto;
 import de.ait.taskmanager.validation.dto.BeforeCurrentDataErrorsDto;
@@ -24,10 +25,10 @@ import javax.validation.Valid;
 public interface TasksApi {
       @Operation(summary = "Add task to user", description = "Full access")
     @ApiResponses(value = {
-//            @ApiResponse(responseCode = "422", description = "Cant find user with this ID",
-//                    content = {
-//                            @Content()
-//                    }),
+            @ApiResponse(responseCode = "422", description = "Cant find user with this ID",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
+                    }),
             @ApiResponse(responseCode = "201", description = "Task added",
                     content = {
                             @Content(mediaType = "application/json", schema = @Schema(implementation = TaskDto.class))

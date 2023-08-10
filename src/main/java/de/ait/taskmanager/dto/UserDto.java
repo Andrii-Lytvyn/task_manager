@@ -19,13 +19,23 @@ public class UserDto {
     @Schema(description = "User ID", example = "1")
     private Long id;
 
-    @Schema(description = "User login name", example = "John")
-    private String loginName;
+
+    @Schema(description = "Users Email", example = "simple@mail.com" )
+    private String email;
+
+    @Schema(description = "Users Role - ADMIN, USER, MANAGER", example = "ADMIN")
+    private String role;
+
+    @Schema(description = "Users status - NOT_CONFIRMED, " +
+            "CONFIRMED, BANNED, DELETED", example = "CONFIRMED")
+    private String state;
 
     public static UserDto from(User user) {
         return UserDto.builder()
                 .id(user.getId())
-                .loginName(user.getLoginName())
+                .email(user.getEmail())
+                .state(user.getState().name())
+                .role(user.getRole().name())
                 .build();
     }
 

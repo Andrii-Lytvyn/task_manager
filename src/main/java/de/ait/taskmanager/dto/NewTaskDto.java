@@ -2,6 +2,7 @@ package de.ait.taskmanager.dto;
 
 import de.ait.taskmanager.validation.constrains.BeforeCurrentDate;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Data;
 
 
@@ -9,6 +10,7 @@ import lombok.Data;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+@Builder
 @Data
 @Schema(description = "Data for adding new task")
 public class NewTaskDto {

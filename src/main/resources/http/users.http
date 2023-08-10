@@ -4,7 +4,9 @@ POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-  "loginName": "John the First"
+  "email":"John_the_First@Gmail.com",
+
+  "password": "Hello!123"
 
 }
 
@@ -14,7 +16,8 @@ POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-  "loginName": "Willy the Second"
+  "email": "Willy_the_Second@gmail.com",
+  "password": "Willy_the_Second!12"
 
 }
 
@@ -30,3 +33,31 @@ GET http://localhost:8080/api/users/1
 ### Get user 2
 
 GET http://localhost:8080/api/users/2
+
+### Delete user
+
+DELETE localhost:8080/api/users/2
+
+### Update User 1
+
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{
+  "newRole" : "MANAGER",
+  "newState" : "CONFIRMED"
+}
+
+### Update user 2
+
+PUT http://localhost:8080/api/users/2
+Content-Type: application/json
+
+{
+  "newRole" : "MANAGER",
+  "newState" : "CONFIRMED"
+}
+
+### Get user 1
+
+GET http://localhost:8080/api/users/1

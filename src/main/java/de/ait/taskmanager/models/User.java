@@ -16,11 +16,33 @@ import java.util.List;
 @Entity
 @Table(name = "login")
 public class User {
+    public enum Role {
+        ADMIN,
+        USER,
+        MANAGER
+    }
+
+    public enum State {
+        NOT_CONFIRMED,
+        CONFIRMED,
+        BANNED,
+        DELETED
+    }
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String loginName;
+    private String email;
+    private String password;
+
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+
+    @Enumerated(value = EnumType.STRING)
+    private State state;
 
     @OneToMany(mappedBy = "executor")
     private List<Task> tasks;

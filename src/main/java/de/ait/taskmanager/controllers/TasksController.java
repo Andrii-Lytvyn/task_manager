@@ -16,9 +16,6 @@ import java.util.List;
 public class TasksController implements TasksApi {
     private final TasksService tasksService;
 
-
-
-
     @Override
     public ResponseEntity<TaskDto> addTask(NewTaskDto newTask) {
         return ResponseEntity

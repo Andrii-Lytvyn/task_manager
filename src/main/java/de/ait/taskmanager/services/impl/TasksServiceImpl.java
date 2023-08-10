@@ -25,7 +25,7 @@ public class TasksServiceImpl implements TasksService {
     @Override
     public TaskDto addTask(NewTaskDto newTask) {
         User user = usersRepository.findById(newTask.getAboutUserId()).orElseThrow(() ->
-                new IncorrectUserIdException("Id <" + newTask.getAboutUserId() + "> is not correct"));
+                new IncorrectUserIdException(newTask.getAboutUserId()));
         Task task = Task.builder()
                 .title(newTask.getTitle())
                 .executor(user)

@@ -1,10 +1,7 @@
 package de.ait.taskmanager.controllers;
 
 import de.ait.taskmanager.controllers.api.UsersApi;
-import de.ait.taskmanager.dto.NewUserDto;
-import de.ait.taskmanager.dto.TasksDto;
-import de.ait.taskmanager.dto.UserDto;
-import de.ait.taskmanager.dto.UsersDto;
+import de.ait.taskmanager.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +16,31 @@ public class UsersController implements UsersApi {
     private final UsersService usersService;
 
     @Override
+    public ResponseEntity<UserDto> addUser(NewUserDto userDto) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(usersService.addUser(userDto));
+    }
+
+    @Override
     public ResponseEntity<UsersDto> getAllUsers() {
         return ResponseEntity
                 .ok(usersService.getAllUsers());
     }
+
     @Override
-    public ResponseEntity<UserDto> addUser(NewUserDto userDto) {
-        return  ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(usersService.addUser(userDto));
+    public ResponseEntity<UserDto> deleteUser(Long userId) {
+        return ResponseEntity
+                .ok(usersService.deleteUser(userId));
     }
+
+    @Override
+    public ResponseEntity<UserDto> updateUser(Long userId, UpdateUserDto updateUser) {
+        return ResponseEntity
+                .ok(usersService.updateUser(userId, updateUser));
+    }
+
+
     @Override
     public ResponseEntity<UserDto> getUser(Long userId) {
         return ResponseEntity
@@ -40,8 +52,6 @@ public class UsersController implements UsersApi {
         return ResponseEntity
                 .ok(usersService.getTasksOfUser(userId));
     }
-
-
 
 }
 

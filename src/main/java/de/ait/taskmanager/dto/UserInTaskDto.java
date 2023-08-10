@@ -16,13 +16,13 @@ public class UserInTaskDto {
     @Schema(description = "User ID", example = "1")
     private Long id;
 
-    @Schema(description = "User login name", example = "John")
-    private String loginName;
+    @Schema(description = "User's email", example = "John")
+    private String email;
 
     public static UserInTaskDto from(User user) {
         return UserInTaskDto.builder()
                 .id(user.getId())
-                .loginName(user.getLoginName())
+                .email(user.getEmail())
                 .build();
     }
 }

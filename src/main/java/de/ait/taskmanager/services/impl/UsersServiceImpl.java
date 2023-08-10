@@ -1,7 +1,8 @@
 package de.ait.taskmanager.services.impl;
 
-import de.ait.taskmanager.dto.NewUserDto;
+import de.ait.taskmanager.dto.*;
 import de.ait.taskmanager.dto.UserDto;
+import de.ait.taskmanager.exceptions.ForbiddenUpdateUserOperationException;
 import de.ait.taskmanager.exceptions.NotFoundException;
 import de.ait.taskmanager.services.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,18 @@ import static de.ait.taskmanager.dto.TaskDto.from;
 public class UsersServiceImpl implements UsersService {
     private final UsersRepository usersRepository;
 
+    @Override
+    public UserDto addUser(NewUserDto newUser) {
+        User user = User.builder()
+                .email(newUser.getEmail())
+                .password(newUser.getPassword())
+                .role(User.Role.USER)
+                .state(User.State.NOT_CONFIRMED).build();
+
+        usersRepository.save(user);
+
+        return from(user);
+    }
 
     @Override
     public UsersDto getAllUsers() {
@@ -32,20 +45,33 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UserDto addUser(NewUserDto userDto) {
+    public UserDto deleteUser(Long userId) {
+        User user = getUserOrThrow(userId);
 
-        User user = User.builder()
-                .loginName(userDto.getLoginName())
-                .build();
-
-        usersRepository.save(user);
+        usersRepository.delete(user);
 
         return from(user);
     }
 
-    private User getUserOrThrow(Long userId) {
-        return usersRepository.findById(userId).orElseThrow(
-                () -> new NotFoundException("User with id <" + userId + "> not found"));
+    @Override
+    public UserDto updateUser(Long userId, UpdateUserDto updateUser) {
+
+        User user = getUserOrThrow(userId);
+
+        if (updateUser.getNewRole().equals("ADMIN")) {
+            throw new ForbiddenUpdateUserOperationException("role", "ADMIN");
+        }
+
+        if (updateUser.getNewState().equals("BANNED")) {
+            throw new ForbiddenUpdateUserOperationException("state", "BANNED");
+        }
+
+        user.setState(User.State.valueOf(updateUser.getNewState()));
+        user.setRole(User.Role.valueOf(updateUser.getNewRole()));
+
+        usersRepository.save(user);
+
+        return from(user);
     }
 
     @Override
@@ -62,6 +88,16 @@ public class UsersServiceImpl implements UsersService {
                 .count(user.getTasks().size())
                 .build();
     }
+
+
+
+    private User getUserOrThrow(Long userId) {
+        return usersRepository.findById(userId).orElseThrow(
+                () -> new NotFoundException("User", userId));
+    }
+
+
+
 
 
 }
