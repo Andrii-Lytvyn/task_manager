@@ -1,6 +1,5 @@
 package de.ait.taskmanager.dto;
 
-import de.ait.taskmanager.validation.constrains.BeforeCurrentDate;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,9 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import de.ait.taskmanager.models.Task;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;

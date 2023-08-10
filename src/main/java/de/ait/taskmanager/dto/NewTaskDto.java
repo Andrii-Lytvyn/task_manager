@@ -1,6 +1,7 @@
 package de.ait.taskmanager.dto;
 
-import de.ait.taskmanager.validation.constrains.BeforeCurrentDate;
+import de.ait.taskmanager.validation.constrains.TaskDayAfterToday;
+import de.ait.taskmanager.validation.constrains.StartBeforeFinishDate;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 
 @Builder
 @Data
+@StartBeforeFinishDate
 @Schema(description = "Data for adding new task")
 public class NewTaskDto {
 
@@ -21,11 +23,11 @@ public class NewTaskDto {
     @Size(min=3,max=200)
     private String title;
 
-    @BeforeCurrentDate
+    @TaskDayAfterToday
     @Schema(description = "Task start date in format:  YYYY-MM-DD", example = "2022-02-02")
     private LocalDate startDate;
 
-    @BeforeCurrentDate
+    @TaskDayAfterToday
     @Schema(description = "Task finish date in format:  YYYY-MM-DD", example = "2022-02-02")
     private LocalDate finishDate;
 

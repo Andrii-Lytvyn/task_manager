@@ -36,7 +36,7 @@ GET http://localhost:8080/api/users/2
 
 ### Delete user
 
-DELETE localhost:8080/api/users/2
+DELETE localhost:8080/api/users/
 
 ### Update User 1
 

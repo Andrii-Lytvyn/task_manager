@@ -4,6 +4,7 @@ import de.ait.taskmanager.dto.ErrorDto;
 import de.ait.taskmanager.dto.TaskDto;
 import de.ait.taskmanager.dto.NewTaskDto;
 import de.ait.taskmanager.validation.dto.BeforeCurrentDataErrorsDto;
+import de.ait.taskmanager.validation.dto.TaskDayAfterTodayErrorsDro;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -35,8 +36,10 @@ public interface TasksApi {
                     }),
             @ApiResponse(responseCode = "400", description = "Validation Error",
                     content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = BeforeCurrentDataErrorsDto.class))
-                    })
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = BeforeCurrentDataErrorsDto.class)),
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = TaskDayAfterTodayErrorsDro.class))
+                    }),
+
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

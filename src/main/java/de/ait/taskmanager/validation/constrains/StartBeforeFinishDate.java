@@ -1,6 +1,6 @@
 package de.ait.taskmanager.validation.constrains;
 
-import de.ait.taskmanager.validation.validator.DateValidator;
+import de.ait.taskmanager.validation.validator.StartBeforeFinishValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -9,12 +9,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = DateValidator.class)
+@Constraint(validatedBy = StartBeforeFinishValidator.class)
 
-public @interface BeforeCurrentDate {
-    String message() default "Date can't be earlier than today";
+public @interface StartBeforeFinishDate {
+    String message() default "Finish date can't be earlier than start date";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
