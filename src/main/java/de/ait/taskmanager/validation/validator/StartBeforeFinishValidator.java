@@ -5,6 +5,7 @@ import de.ait.taskmanager.validation.constrains.StartBeforeFinishDate;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.time.LocalDate;
 
 public class StartBeforeFinishValidator implements ConstraintValidator<StartBeforeFinishDate, NewTaskDto> {
 
@@ -16,3 +17,15 @@ public class StartBeforeFinishValidator implements ConstraintValidator<StartBefo
 
     }
 }
+
+
+/*public class StartBeforeFinishValidator implements ConstraintValidator<StartBeforeFinishDate, NewTaskDto> {
+
+
+    @Override
+    public boolean isValid(NewTaskDto taskDto, ConstraintValidatorContext constraintValidatorContext) {
+
+        return taskDto.getFinishDate().isAfter(taskDto.getStartDate());
+
+    }
+}*/

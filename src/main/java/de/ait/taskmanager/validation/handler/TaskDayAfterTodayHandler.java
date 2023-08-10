@@ -21,13 +21,15 @@ public class TaskDayAfterTodayHandler {
                 .map(error -> (ObjectError) error) // сделали преобразование
                 .map(error -> { // собираем информацию об ошибке в формате JSON
                     TaskDayAfterTodayErrorDro errorDto = TaskDayAfterTodayErrorDro.builder()
-                            .field(error.getObjectName())
+                            .field(error.toString())
+                            //.field(error.getField())
                             .message(error.getDefaultMessage())
                             .build();
 
                     if (error.getArguments() != null) { // если пользователь ввел значение, которое не нравится валидатору
                         errorDto.setRejectedValue(error.getArguments().toString()); // то добавим это значение в ответ
                     }
+
 
                     return errorDto;
                 })

@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Schema(description = "DataValidation Errors")
+@Schema(description = "Data Validation Errors")
 public class BeforeCurrentDataErrorsDto {
 
     @Schema(description = "ErrorsList")

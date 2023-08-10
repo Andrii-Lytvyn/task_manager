@@ -38,9 +38,30 @@ public interface UsersApi {
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<UserDto> addUser(@Parameter(required = true, description = "User") @RequestBody @Valid NewUserDto newUser);
 
+
+
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Users list",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = UsersDto.class))
+                    }),
+            @ApiResponse(responseCode = "403", description = "Attempt to sort by a forbidden field",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
+                    })
+    })
     @Operation(summary = "Get All Users", description = "Full access")
     @GetMapping
-    ResponseEntity<UsersDto> getAllUsers();
+    ResponseEntity<UsersDto> getAllUsers(
+            @Parameter(description = "Page number", example = "1")
+            @RequestParam(value = "page") Integer page,
+            @Parameter(description = "Sort field. Enable: email, role, state, id")
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @Parameter(description = "If True -> DESC")
+            @RequestParam(value = "desc", required = false) Boolean desc,
+            @RequestParam(value = "filterBy", required = false) String filterBy,
+            @RequestParam(value = "filterValue", required = false) String filterValue);
     @Operation(summary = "Delete User", description = "Only for Admin")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "404", description = "User not found",

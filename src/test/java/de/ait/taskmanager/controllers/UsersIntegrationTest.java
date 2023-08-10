@@ -61,11 +61,26 @@ class UsersIntegrationTest {
         @Sql(scripts = "/sql/data_for_users.sql")
         @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
         void get_all_users() throws Exception {
-            mockMvc.perform(get("/api/users"))
+            mockMvc.perform(get("/api/users").param("page", "0"))
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.count", is(2)));
         }
+
+        @Test
+        @Sql(scripts = "/sql/data_for_users.sql")
+        @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+        void get_all_users_with_sorting_pagination_and_filtering() throws Exception {
+            mockMvc.perform(get("/api/users")
+                            .param("page", "0")
+                            .param("orderBy", "role")
+                            .param("desc", "true")
+                            .param("filterBy", "state")
+                            .param("filterValue", "CONFIRMED"))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.count", is(1)));
+        }
     }
+
 
     @Nested
     @DisplayName("DELETE /api/users/{userId} method is works: ")
@@ -162,7 +177,7 @@ class UsersIntegrationTest {
 
     @Nested
     @DisplayName("GET /api/users/{userId}/tasks")
-    class GetArticlesOfUserTest {
+    class GetTasksOfUserTest {
 
         @Test
         @Sql(scripts = "/sql/data_for_users.sql")

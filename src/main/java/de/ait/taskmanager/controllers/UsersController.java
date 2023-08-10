@@ -23,9 +23,13 @@ public class UsersController implements UsersApi {
     }
 
     @Override
-    public ResponseEntity<UsersDto> getAllUsers() {
+    public ResponseEntity<UsersDto> getAllUsers(Integer pageNumber,
+                                                String orderBy,
+                                                Boolean desc,
+                                                String filterBy,
+                                                String filterValue) {
         return ResponseEntity
-                .ok(usersService.getAllUsers());
+                .ok(usersService.getAllUsers(pageNumber, orderBy, desc, filterBy, filterValue));
     }
 
     @Override

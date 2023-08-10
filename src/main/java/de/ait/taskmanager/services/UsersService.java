@@ -7,7 +7,7 @@ import java.util.List;
 public interface UsersService {
     UserDto addUser(NewUserDto newUser);
 
-    UsersDto getAllUsers();
+    UsersDto getAllUsers(Integer pageNumber, String orderByField, Boolean desc, String filterBy, String filterValue);
 
     UserDto deleteUser(Long userId);
 

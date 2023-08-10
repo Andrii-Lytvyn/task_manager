@@ -37,8 +37,12 @@ public interface TasksApi {
             @ApiResponse(responseCode = "400", description = "Validation Error",
                     content = {
                             @Content(mediaType = "application/json", schema = @Schema(implementation = BeforeCurrentDataErrorsDto.class)),
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = TaskDayAfterTodayErrorsDro.class))
                     }),
+            @ApiResponse(responseCode = "400", description = "Date validation error",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = TaskDayAfterTodayErrorsDro.class))
+                    })
+
 
     })
     @PostMapping
