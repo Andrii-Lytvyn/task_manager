@@ -23,9 +23,9 @@ Content-Type: application/json
 
 ### Get All Users
 
-GET localhost:8080/api/users
+GET localhost:8080/api/users?page=0&orderBy=email
 
-### Get All Users 2
+### Get Confirmed user
 GET localhost:8080/api/users?orderBy=email&desc=true&page=0&filterBy=state&filterValue=CONFIRMED
 
 ### Get user 1

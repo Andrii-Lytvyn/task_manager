@@ -2,7 +2,6 @@ package de.ait.taskmanager.validation.handler;
 
 import de.ait.taskmanager.validation.dto.ValidationErrorDto;
 import de.ait.taskmanager.validation.dto.ValidationErrorsDto;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -11,15 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-/**
- * 7/28/2023
- * REST API
- *
- * @author Marsel Sidikov (AIT TR)
- */
 @ControllerAdvice
-public class ValidationExceptionHandler1 {
+public class ValidationExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationErrorsDto> handleException(MethodArgumentNotValidException e) {

@@ -72,9 +72,6 @@ GET localhost:8080/api/users/1/tasks
 
 GET localhost:8080/api/users/2/tasks
 
-### All tasks by date - empty
-
-GET localhost:8080/api/tasks?year=2021&month=1
 
 ### Check empty title
 POST localhost:8080/api/tasks
